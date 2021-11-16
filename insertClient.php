@@ -23,26 +23,59 @@ if($conn == false){
 }
 
 
-//testing insert details
-/*
-$roomId = $_REQUEST["rooms_id_rooms"];
-$reservationId = $_REQUEST["reservation_id_reservation"];
-$user_name = $_REQUEST["user_name"];
-$user_surname = $_REQUEST["user_surname"];
-$start_date = $_REQUEST["start_date"];
-$end_date = $_REQUEST["end_date"];
-*/
-//to add clients below
-$userName = $_REQUEST["user_name"];
-$userSurname = $_REQUEST["user_surname"];
-$userAddress = $_REQUEST["user_address"];
-$userZipcode = $_REQUEST["user_zipcode"];
-$userPhone = $_REQUEST["user_phone"];
+
+
+
+if(isset($_REQUEST["user_name"]))
+{
+
+
+       $userName = $_REQUEST["user_name"];
+       $userSurname = $_REQUEST["user_surname"];
+       $userAddress = $_REQUEST["user_address"];
+       $userZipcode = $_REQUEST["user_zipcode"];
+       $userPhone = $_REQUEST["user_phone"];
 
 
 
 
+        $sql = "INSERT INTO myhotel.users ( user_name , user_surname , user_address , user_zipcode , user_phone ) VALUES
+        ('$userName' , '$userSurname' , '$userAddress' , '$userZipcode' , '$userPhone' )";
 
+            if(mysqli_query($conn, $sql)){
+            
+            
+      $toReturn =
+                    '<div class=" container mt-3 card text-center" style="width: 18rem;">
+            <img src="https://cdn.pixabay.com/photo/2016/10/16/21/30/halloween-1746354__340.jpg" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">Name : '.$userName.'</h5>
+                <h5 class="card-title">Surname : '.$userSurname.'</h5>
+                <h5 class="card-title">Address : '.$userAddress.'</h5>
+                <h5 class="card-title">Zipcode : '.$userZipcode.'</h5>
+                <h5 class="card-title">Phone number : '.$userPhone.'</h5>
+
+
+
+                <p class="card-text">User has been stored in Hotel Database successfully</p>';
+
+
+
+
+                    
+            } else{
+                echo "ERROR: Hush! Sorry $sql. " 
+                    . mysqli_error($conn);
+            }
+
+
+
+            //close connection
+            mysqli_close($conn);
+
+
+
+}
 
 
 ?>
@@ -64,38 +97,11 @@ $userPhone = $_REQUEST["user_phone"];
     <title>Document</title>
     <div class="container">
        <?php
-                
-            $sql = "INSERT INTO myhotel.users ( user_name , user_surname , user_address , user_zipcode , user_phone ) VALUES
-            ('$userName' , '$userSurname' , '$userAddress' , '$userZipcode' , '$userPhone' )";
-
-                if(mysqli_query($conn, $sql)){
-                
-                
-            
-
-                    echo nl2br("\n Name : $userName \n Surname: $userSurname \n "
-                        . " Address : $userAddress \n   Zipcode : $userZipcode \n  Phone number : $userPhone");
-
-                        '<div class=" container mt-3 card text-center" style="width: 18rem;">
-                <img src="https://cdn.pixabay.com/photo/2016/04/15/11/48/hotel-1330850__480.jpg" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title"></h5>
-                    <p class="card-text">data stored in a database successfully</p>';
-
-
-                        
-                        
-                } else{
-                    echo "ERROR: Hush! Sorry $sql. " 
-                        . mysqli_error($conn);
-                }
+          
+           echo $toReturn;
 
 
 
-                //close connection
-                mysqli_close($conn);
-                
-       
        
        ?>
     </div>

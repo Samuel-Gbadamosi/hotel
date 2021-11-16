@@ -135,6 +135,23 @@ function getUserFromId($id)
 
 }
 
+//rooms id 
+function getRoomsidNamebyId($id){
+
+    $conn = createConnection();
+    
+    $sql2 = "SELECT room_number FROM myhotel.rooms Where id=$id";
+    $user = $conn->query($sql2);
+
+    $resultstring = $user->fetch_row()[0];
+
+
+    closeConnection($conn);
+
+   
+    return $resultstring;
+}
+
 function getroomPic($id){
     $conn = createConnection();
 
@@ -145,6 +162,20 @@ function getroomPic($id){
     return $resultstring;
 
 }
+
+
+// function editReservation($id){
+//     $conn = createConnection();
+    
+//      $sql2 = "UPDATE from myhotel.rooms_reservation where id = '$id'";
+//      $updateReservation = $conn->query($sql2);
+
+
+//     closeConnection($conn);
+
+
+//     return $updateReservation;
+// }
 
 
 
@@ -221,17 +252,8 @@ function deleteReservation($id){
 
     $conn = createConnection();
 
-    // $sql2 = "SELECT *
-    // FROM myhotel.rooms
-    // LEFT JOIN myhotel.rooms_reservation 
-    // ON rooms.id_rooms = myhotel.rooms_reservation
-    // WHERE start_date > '2021-11-09' and end_date < '2022-11-02' ";
-
-    // $sql2 = "SELECT rooms_reservation.reservation_id_reservation
-    // DATEDIFF(start_date , end_date) AS days
-    // FROM myhotel.rooms_reservation";
-
-    $sql2 = "SELECT rooms_reservation.reservation_id_reservation , start_date , end_date
+    // $sql2 = "SELECT rooms_reservation.rooms_id_rooms,reservation_id_reservation, users_id , start_date , end_date
+    $sql2 = "SELECT *
     FROM myhotel.rooms_reservation
     WHERE start_date BETWEEN '2021-10-01' AND '2021-12-22'
     AND end_date BETWEEN '2021-11-01' AND '2021-12-30'";
@@ -245,6 +267,22 @@ function deleteReservation($id){
 
     return $entirerooms;
  }
+
+ function getallRooms(){
+
+    $conn = createConnection();
+
+
+    $sql2 = "SELECT * FROM myhotel.rooms_reservation";
+    $rooms = $conn->query($sql2);
+
+    closeConnection($conn);
+
+    return $rooms;
+
+ }
+
+ 
 
 
  

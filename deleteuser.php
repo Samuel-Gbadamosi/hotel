@@ -1,4 +1,6 @@
-<?php 
+<!-- <?php 
+
+
 
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
@@ -29,8 +31,11 @@ if($conn == false){
 
 //to delete reservation only id;
 $id = $_REQUEST["id"];
-$start_date = $_REQUEST["start_date"];
-$end_date = $_REQUEST["end_date"];
+$user_name = $_REQUEST["user_name"];
+$user_surname = $_REQUEST["user_surname"];
+$user_address = $_REQUEST["user_address"];
+$user_zipcode = $_REQUEST["user_zipcode"];
+$user_phone = $_REQUEST["user_phone"];
 
 
 
@@ -54,29 +59,26 @@ $end_date = $_REQUEST["end_date"];
         <!-- bootstrap link -->
         <link rel="stylesheet" href="../hotel/css/styles.css">
 
-    <title>Delete Page</title>
+    <title>Delete User</title>
     <div class="container">
        <?php
 
-        $sql2 = "DELETE  FROM myhotel.rooms_reservation WHERE id = '$id'";
-        $deleteRes = $conn->query($sql2);
+        $sql2 = "DELETE  FROM myhotel.users WHERE id = '$id'";
+        $deleteUser = $conn->query($sql2);
 
-        if($deleteRes){
+        if($deleteUser){
           
        
                     
 
-                    echo nl2br("\n Deleted Reservation  : $id\n Check-In :$start_date ID: \n "
-                        . " Check-Out :$end_date  ");
+                    echo nl2br("\n User-Id  : $id\n Name :$user_name ID: \n "
+                        . " Surname :$user_surname  ");
 
                         '<div class=" container mt-3 card text-center" style="width: 18rem;">
                 <img src="https://cdn.pixabay.com/photo/2016/04/15/11/48/hotel-1330850__480.jpg" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"></h5>
-                    <p class="card-text">Reservation deleted successfully!</p>';
-
-                     header("location: roomBooked.php");
-
+                    <p class="card-text">User deleted successfully!</p>';
 
 
                 }else{
@@ -99,4 +101,4 @@ $end_date = $_REQUEST["end_date"];
 <body>
 
 </body>
-</html>
+</html> -->

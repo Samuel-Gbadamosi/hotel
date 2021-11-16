@@ -10,6 +10,29 @@ date_default_timezone_set('Europe/Rome');
 $reservation = getroomsReserved();
 
 
+if ($reservation->num_rows > 0) {
+  // output data of each row
+  while ($row = $reservation->fetch_assoc()) {
+      $id = $row["id"];
+    $roomId = $row["rooms_id_rooms"];
+    $reservationId = $row["reservation_id_reservation"];
+    $users_id = $row["users_id"];
+    $start_date = $row["start_date"];
+    $end_date = $row["end_date"];
+  
+
+    
+?>
+ <?php
+  }
+} else {
+  echo "0 results";
+}
+
+
+
+
+
 
 //rooms from hotel
 $hotelRooms = getRooms();
@@ -56,69 +79,39 @@ $customers = getUser();
   <!-- header -->
   <!-- main -->
   <main>
-    <div class="container">
+   
 
-      <h1 class="text-center text-bg-light ">Book a Room</h1>
-      <div class="headerrip">
-                <?php
-
-          if ($mainHotel->num_rows > 0) {
-            // output data of each row
-            while ($row = $mainHotel->fetch_assoc()) {
-
-          ?>
-          
-          
-
-        <div class="words">
-
-          <h2><?= $row["hotel_name"] ?></h2>
-     
-
-        </div>
-
-        <?php
-            }
-          } else {
-            echo "0 results";
-          }
-
-          ?>
-
-      </div>
 
 
       <div class="container">
 
-        <div class="col-md-12 text-center text-primary mt-5">
-          <h3>Rooms Available in Hotel Bezos</h3>
-        </div>
-
        
 
-        <!-- section form        -->
-        <form method="post"  action="insert.php" style="position: relative; top:220px; font-size: 20px;">
+        <form method="post"  action="insertmodifybooked.php" style="position: relative; top:220px; font-size: 20px;">
+        <div class="col-md-4 "  >
+                        <input type="hidden" class="form-control" id="id" name="id" value="<?php echo $id ?>">
+                    </div>
         <div class="col-md-4 "  >
                         <label for="" class="form-label">ROOM ID</label>
-                        <input type="text" class="form-control" id="roomId" name="roomId">
+                        <input type="text" class="form-control" id="roomId" name="roomId" value="<?php echo $roomId ?>">
                     </div>
                     <div class="col-md-4" >
                         <label for="" class="form-label">RESERVATION ID</label>
-                        <input type="text" class="form-control" id="reservationId" name="reservationId">
+                        <input type="text" class="form-control" id="reservationId" name="reservationId" value="<?php echo $reservationId ?>">
                     </div>
                     <div class="col-md-4" >
                         <label for="" class="form-label">USER ID</label>
 
-                        <input type="text" class="form-control" id="users_id" name="users_id">
+                        <input type="text" class="form-control" id="users_id" name="users_id" value="<?php echo $users_id?>">
                     </div>
                   
                     <div class="col-md-4">
                         <label for="" class="form-label">Check-In</label>
-                        <input type="datetime-local" class="form-control" id="start_date" name="start_date">
+                        <input type="datetime-local" class="form-control" id="start_date" name="start_date" value="<?php echo $start_date ?>">
                     </div>
                     <div class="col-md-4">
                         <label for="" class="form-label">Check-Out</label>
-                        <input type="datetime-local" class="form-control" id="end_date" name="end_date">
+                        <input type="datetime-local" class="form-control" id="end_date" name="end_date" value="<?php echo $end_date ?>">
                     </div>
 
                     <button type="submit" class="btn btn-primary mt-2">Submit</button>
@@ -133,15 +126,7 @@ $customers = getUser();
         </div>
       </div>
 
-      <div class="container">
-      <div id="marco">
-          <div id="cielo"></div>
-          <div id="luna"></div>
-          <div id="gato"></div>
-          <div id="muro"></div>
-          <div id="edificios"></div>
-	    </div>
-      </div>
+  
 
 
 
