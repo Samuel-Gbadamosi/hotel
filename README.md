@@ -1,0 +1,2 @@
+# hotel
+This is an Hotel-Management (Hotel-Bezos) constructed with pure PHP (FRONT-END AND BACK-END), HTML , CSS AND NO FRAMEWORKS INCLUDED, This  website could be used to book rooms available in the hotel connected to the database, (CRUD).  it can also be done easily with laravel, but i decided to do it in plain php to develop and brainstorm minimal problems we might encounter in our Hotel  development.
