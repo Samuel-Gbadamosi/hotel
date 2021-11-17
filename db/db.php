@@ -23,19 +23,6 @@ function createConnection()
 
 
 
-
-
-
-
-
- //reservations
-
-
- 
-
- // foreach($result as $res){
- //   var_dump($res);
- //  }
  function getReservation()
  {
 
@@ -98,16 +85,7 @@ function createConnection()
 
     $sql2 = "SELECT * FROM myhotel.rooms_reservation";
 
-        
-    // $enteredDate = strtotime($stime);
-    // $checkInDateBegin = strtotime($sdate);
-    // $checkOutDateEnd = strtotime($edate);
-
-    // if($enteredDate >= $checkInDateBegin && $enteredDate <= $checkOutDateEnd){
-    //     echo "in between";
-    // }else{
-    //     echo "no";
-    // }
+   
 
     $resbooked = $conn->query($sql2);
 
@@ -164,18 +142,7 @@ function getroomPic($id){
 }
 
 
-// function editReservation($id){
-//     $conn = createConnection();
-    
-//      $sql2 = "UPDATE from myhotel.rooms_reservation where id = '$id'";
-//      $updateReservation = $conn->query($sql2);
 
-
-//     closeConnection($conn);
-
-
-//     return $updateReservation;
-// }
 
 
 
@@ -206,10 +173,6 @@ function deleteReservation($id){
     
      $conn = createConnection();
 
-     //when creating an inner join we definitely call the first columns in first table
-     //then we inner join the second table we wanna join it with
-     //on rooms_reservvation.id = first table id(reservation.id_reservation)
-     //two joins including the users table
     $sql2 = "SELECT *
       FROM myhotel.reservation 
       INNER JOIN rooms_reservation 

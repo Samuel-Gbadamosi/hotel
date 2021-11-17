@@ -1,109 +1,107 @@
+
+
 <?php
 include "config.php";
-
-
-
-
-
-
-if(isset($_POST['but_submit'])){
-
-    $uname = mysqli_real_escape_string($con,$_POST['txt_uname']);
-    $password = mysqli_real_escape_string($con,$_POST['txt_pwd']);
-
-    
-    if ($uname != "" && $password != ""){
-  
-        $sql_query = "select count(*) as cntUser from myhotel.users where username='".$uname."' and password='".$password."'";
-        $result = mysqli_query($con,$sql_query);
-        $row = mysqli_fetch_array($result);
-  
-        $count = $row['cntUser'];
-
-        
-
-  
-        if($count > 0){
-            $_SESSION['uname'] = $uname;
-            header('Location: index2.php');
-        }else{
-           header('Location: home.php');
-        }
-  
-    }
-  
-  }
-
-  if(isset($_POST['registerBtn'])){
-    $uname = $_POST['txt_umane'];
-    $email = $_POST['email'];
-    $passwd = $_POST['txt_pwd'];
-    $passwd_again = $_POST['passwd_again'];
-
-    if($uname != " " && $passwd != " " &&  $passwd_again != " "){
-
-
-        if($passwd === $passwd_again){
-
-            if( strlen($passwd) >= 5 && strpbrk($passwd, "!#$.,:;()") != false){
-
-            }else {
-                $error_msg = 'Your password is not strong enough. Please USE another.';
-            }
-           
-           
-        } else{
-            $error_msg = 'please fill out all required fields';
-        }
-
-    }
-    else {
-        $error_msg = 'Your  passwords did not match';
-    }
-  }
-
-
-
-
+require('./db/db.php');
 
 
 ?>
 
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- bootstrap link -->
+    <meta charset="utf-8"/>
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css"/>
+        <!-- bootstrap link -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
   <!-- bootstrap link -->
-    
-
-    <link rel="stylesheet" href="./css/styles.css">
-
-    <title>Hotel-Bezos</title>
 </head>
 <body>
-<div class="container mt-5 ">
-    <form method="post" action="home.php">
-        <div id="div_login" >
-            <h1>Login</h1>
-            <div>
-                <input type="text" class="textbox" id="txt_uname" name="txt_uname" placeholder="Username" />
-            </div>
-            <div>
-                <input type="password" class="textbox" id="txt_uname" name="txt_pwd" placeholder="Password"/>
-            </div>
-            <div>
-                <input type="submit" value="Submit" name="but_submit" id="but_submit" />
+<?php
+    // When form submitted, check and create user session.
+    if (isset($_POST['username'])) {
+        $username = stripslashes($_REQUEST['username']);    // removes backslashes
+        $username = mysqli_real_escape_string($con, $username);
+        $password = stripslashes($_REQUEST['password']);
+        $password = mysqli_real_escape_string($con, $password);
+        // Check user is exist in the database
+        $query    = "SELECT * FROM `users` WHERE username='$username'
+                     AND password='" . md5($password) . "'";
+        $result = mysqli_query($con, $query);
+        var_dump($con->error);
 
-            </div>
+        $rows = mysqli_num_rows($result);
+        if ($rows == 1) {
+            $_SESSION['username'] = $username;
+            // Redirect to user dashboard page
+            header("Location: index2.php");
+        } else {
+            echo "<div class='form'>
+                  <h3>Incorrect Username/password.</h3><br/>
+                  <p class='link'>Click here to <a href='/home.php'>Login</a> again.</p>
+                  </div>";
+        }
+    } else {
+?>
+    <!-- <form class="form" method="post" name="login">
+        <h1 class="login-title">Login</h1>
+        <input type="text" class="login-input" name="username" placeholder="Username" autofocus="true"/>
+        <input type="password" class="login-input" name="password" placeholder="Password"/>
+        <input type="submit" value="Login" name="submit" class="login-button"/>
+        <p class="link"><a href="/registeration.php">New Registration</a></p>
+  </form> -->
+<div class="container">
+  <section class="vh-200">
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-6 text-black mt-5" >
+
+        <div class="px-5 ms-xl-4">
+          <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
+          <span class="h1 fw-bold mb-0">Hotel-Bezos</span>
         </div>
-    </form>
-</div>   
+
+        <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+
+          <form method="post" name="login" style="width: 23rem;">
+
+            <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Log in</h3>
+
+            <div class="form-outline mb-4">
+            <label class="form-label" for="form2Example18">Username</label>
+
+            <input type="text" class="login-input" name="username" placeholder="Username" autofocus="true"/>
+            </div>
+
+            <div class="form-outline mb-4">
+              <label class="form-label" for="form2Example28">Password</label>
+              <input type="password" class="login-input" name="password" placeholder="Password"/>
+
+            </div>
+
+            <div class="pt-1 mb-4">
+            <input class="btn btn-primary" type="submit" value="Login" name="submit" class="login-button"/>
+            </div>
+
+            <p>Don't have an account? <a href="/registeration.php" class="link-info">Register here</a></p>
 
 
+          </form>
 
+        </div>
+
+      </div>
+      <div class="col-sm-2 px-0 d-none d-sm-block mt-5">
+        <img style="border-radius: 30px; position:relative; right:40px; width:700px;"  src="https://cdn.pixabay.com/photo/2017/06/11/12/33/swimming-2392283__340.jpg" alt="Login image" style="object-fit: cover; object-position: left;">
+      </div>
+    </div>
+  </div>
+ </section>
+</div>
+<?php
+    }
+?>
 </body>
 </html>
