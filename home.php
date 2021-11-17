@@ -84,10 +84,10 @@ require('./db/db.php');
             <div class="pt-1 mb-4">
             <input class="btn btn-primary" type="submit" value="Login" name="submit" class="login-button"/>
             </div>
-
+               <!-- if you dont have account then register through this link -->
             <p>Don't have an account? <a href="/registeration.php" class="link-info">Register here</a></p>
 
-
+    
           </form>
 
         </div>
