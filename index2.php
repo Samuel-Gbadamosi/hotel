@@ -43,7 +43,7 @@ $roomsBooked = getRoomsBooked();
     $tempname = $_FILES["uploadfile"]["tmp_name"];    
         $folder = __DIR__ . "\\images\\".$image;
           
-    $db = mysqli_connect("localhost", "root", "", "myhotel");
+    $db = mysqli_connect("localhost", "root", "root", "restaurant");
   
         // Get all the submitted data from the form
         $sql = "INSERT INTO myhotel.rooms (image) VALUES ('$image')";

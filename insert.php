@@ -42,7 +42,7 @@ if (isset($_REQUEST["roomId"])) {
     $start_date = $_REQUEST["start_date"];
     $end_date = $_REQUEST["end_date"];
 
-    //we create a checkin and checout date
+    //we create a checkin and checkout date
     $checkIn =  strtotime("2021-11-04");
     $checkOut =  strtotime("2021-12-11");
 

@@ -2,8 +2,8 @@
  session_start();
 $host = "localhost"; /* Host name */
 $user = "root"; /* User */
-$password = ""; /* Password */
-$dbname = "myhotel"; /* Database name */
+$password = "root"; /* Password */
+$dbname = "restaurant"; /* Database name */
 
 $con = mysqli_connect($host, $user, $password,$dbname);
 // Check connection

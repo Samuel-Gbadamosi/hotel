@@ -6,6 +6,10 @@ require_once "../hotel/db/db.php";
 
 $hotelRooms = getRooms();
 
+// foreach($hotelRooms as $ht){
+//   var_dump($ht);
+// }
+
 $mainHotel = getHotel();
 
 $customers = getUser();

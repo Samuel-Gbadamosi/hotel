@@ -16,18 +16,18 @@
                 <a class="nav-link text-light" href="bookRoom.php">Book a Room</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="/roomBooked.php">Rooms Booked</a>
+                <a class="nav-link text-light" href="roomBooked.php">Rooms Booked</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="/addClient.php">Add Client</a>
+                <a class="nav-link text-light" href="addClient.php">Add Client</a>
 
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="/contactUs.php">Contact Us</a>
+                <a class="nav-link text-light" href="contactUs.php">Contact Us</a>
 
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light" href="/customer.php">Customers</a>
+                <a class="nav-link text-light" href="customer.php">Customers</a>
 
               </li>
               <li class="nav-item">

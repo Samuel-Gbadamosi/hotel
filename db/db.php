@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
 $username = "root";
-$password = "";
-$dbname = "myhotel";
+$password = "root";
+$dbname = "restaurant";
 
 
 
@@ -55,7 +55,7 @@ function createConnection()
  {
      $conn = createConnection();
 
-     $sql2 = "SELECT * FROM myhotel.rooms";
+     $sql2 = "SELECT * FROM rooms";
      $resRooms =  $conn->query($sql2);
   
 
